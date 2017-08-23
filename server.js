@@ -1,63 +1,31 @@
 var express = require( 'express' );
-var mysql = require( 'mysql' );
-
 var app = express();
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'oova',
-    database: 'camping',
-    socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
-});
+var pgp = require('pg-promise')(/*options*/)
+
+var db = pgp('postgres://postgres:oova@localhost:5433/dvdrental')
+
 
 var trips = [];
 
-connection.query( 'SELECT * FROM tbl_trips', function( err, rows, fields ) {
-    if( err ) {
-        console.log( err );
-    } else {
-        
-        for (var i = 0; i < rows.length; i++) {
-            
-            var id = rows[i].id;
-            var campground_id = rows[i].fld_campground_id;
-            var trip_number = rows[i].fld_trip_number;
-            var arrival_date = rows[i].fld_arrival_date;
-            var departure_date = rows[i].fld_departure_date;
-            var site_number = rows[i].fld_site_number;
-            var latitude = rows[i].fld_latitude;
-            var longitude = rows[i].fld_longitude;
-            var search_keywords = rows[i].fld_search_keywords;
-            var memo = rows[i].fld_memo;
+db.any('SELECT * FROM actor', [true])
+.then(function(data) {
+    // success;
+    console.log( 'success', data.length );
 
-            global.campground_name = null;
-            var XXX = null;
+    for (var i = 0; i < data.length; i++) {
+        var first_name = data[i].first_name;
 
-            connection.query( 'SELECT fld_name FROM tbl_campgrounds WHERE id = ' + campground_id, function( err2, rows2, fields2 ) {
-          
-                
-                
-                
-                XXX = JSON.parse( JSON.stringify( rows2 ));
-                global.campground_name = XXX[0].fld_name;
-
-                // console.log( campground_name );
-
-                
-                
-            });
-
-            console.log( 'helloXX', global.campground_name );
-
-            trips[i] = { 
-                id: id, 
-                campName: global.campground_name, 
-                tripNum: trip_number 
-            };
-        }
+        trips[i] = { 
+            firstName: first_name 
+        };
     }
+})
+.catch(function(error) {
+    // error;
+    console.log( error );
 });
+
 
 app.set( 'view engine', 'ejs' );
 

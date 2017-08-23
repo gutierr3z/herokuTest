@@ -20,16 +20,12 @@
                 <h2>Loop</h2>
                 <table border="1">
                     <tr>
-                        <th>ID</th>
-                        <th>Camp Name</th>
-                        <th>Trip Num</th>
+                        <th>first name</th>
                     </tr>
-                    <% trips.forEach( function(trip ) { %>
-                        <tr>
-                            <td><%= trip.id %></td> 
-                            <td><%= trip.campName %></td> 
-                            <td><%= trip.tripNum %></td>
-                        </tr>
+                    <% trips.forEach(function(trip) { %>
+                    <tr>
+                        <td><%= trip.firstName %></td>
+                    </tr>
                     <% }); %>
                 </table>
             </div>
