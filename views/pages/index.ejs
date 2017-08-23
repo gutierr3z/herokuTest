@@ -20,11 +20,25 @@
                 <h2>Loop</h2>
                 <table border="1">
                     <tr>
-                        <th>first name</th>
+                        <th>trip Num</th>
+                        <th>Camp</th>
+                        <th>Arrival</th>
+                        <th>Departure</th>
+                        <th>Site</th>
+                        <th>LAT</th>
+                        <th>LON</th>
+                        <th>Memo</th>
                     </tr>
                     <% trips.forEach(function(trip) { %>
                     <tr>
-                        <td><%= trip.firstName %></td>
+                        <td><%= trip.tripNumber %></td>
+                        <td><%= trip.campgroundName %></td>
+                        <td><%= trip.arrivalDate %></td>
+                        <td><%= trip.departureDate %></td>
+                        <td><%= trip.siteNumber %></td>
+                        <td><%= trip.latitude %></td>
+                        <td><%= trip.longitude %></td>
+                        <td><%= trip.memo %></td>
                     </tr>
                     <% }); %>
                 </table>
