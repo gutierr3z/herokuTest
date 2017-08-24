@@ -1,0 +1,43 @@
+
+heroku pg:copy your-app::DATABASE_URL DATABASE_URL -a yourapp-staging
+
+heroku pg:copy dvdrental::DATABASE_URL DATABASE_URL -a sheltered-oasis-48719
+
+git remote add heroku https://git.heroku.com/sheltered-oasis-48719.git
+
+heroku git:remote -a https://git.heroku.com/sheltered-oasis-48719.git
+
+
+heroku pg:psql postgresql-reticulated-70639 --app sheltered-oasis-48719
+heroku pg:psql postgresql-reticulated-70639 --app sheltered-oasis-48719
+
+
+
+
+
+heroku config:set AWS_ACCESS_KEY_ID=AKIAJ2E6VWZNWHKSCDLA AWS_SECRET_ACCESS_KEY=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
+heroku config:set S3_BUCKET_NAME=dvdrental_dump
+
+
+heroku pg:psql DATABASE_URL --app sheltered-oasis-48719
+
+
+
+
+addon:  postgresql-reticulated-70639
+
+heroku pg:push DATABASE_URL --app sheltered-oasis-48719
+
+GOOD ONES:-----------------------------------------------
+
+PGPASSWORD=oova PGPORT=5433 pg_dump -Fc --no-acl --no-owner -h localhost -U postgres dvdrental > dvdrental.dump
+PGPASSWORD=oova PGPORT=5433 pg_dump -Fc --no-acl --no-owner -h localhost -U postgres camping > camping.dump
+heroku pg:psql DATABASE_URL --app sheltered-oasis-48719
+
+heroku pg:backups:restore 'http://www.tinyvise.com/dvdrental.dump' DATABASE_URL
+heroku pg:backups:restore 'http://www.tinyvise.com/camping.dump' DATABASE_URL
+
+
+
+
+git config --global --edit
