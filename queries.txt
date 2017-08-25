@@ -1,0 +1,19 @@
+
+SELECT 
+trips.fld_trip_number, camp.fld_name, trips.fld_arrival_date, trips.fld_departure_date
+FROM 
+tbl_trips
+AS 
+trips
+JOIN 
+tbl_campgrounds
+AS 
+camp
+ON 
+trips.fld_campground_id::int = camp.id
+
+
+
+
+INSERT INTO tbl_assets( fld_trip_id, fld_file) VALUES( 1, 'one' )
+
